@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /*瓶子外部的CSS*/
+        .bottle {
+            position: relative;
+            height: 100px;
+            width: 100px;
+            border: 3px solid rgb(233, 233, 233);
+            overflow: hidden;
+            padding: 5px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .bottle::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            /* background: rgb(216, 216, 216); */
+            background: rgb(211, 211, 211);
+            opacity: 0.4;
+        }
+
+        /*瓶子內部的CSS*/
+        .bottle_inner {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        /*水的CSS*/
+        .water {
+            position: absolute;
+            bottom: 0;
+            /*60-2 = 58% , 30-2 = 28% , 10-2 = 8%*/
+            height: 58%;
+            width: 100%;
+            border-radius: 0% 0% 0% 0%;
+            /* background: rgb(0, 132, 255); */
+            background: rgb(255, 136, 0);
+            /* background: rgb(179, 85, 255); */
+        }
+
+        /*水表面的CSS*/
+        .surface {
+            position: absolute;
+            /*60-15 = 45% , 30-15 = 15% , 10% = 5%*/
+            bottom: 45%;
+            /*60% = 25% , 30% = 15% , 10% = 5%*/
+            height: 25%;
+            width: 100%;
+            border-radius: 50%;
+            /* background: rgb(0, 132, 255); */
+            background: rgb(255, 136, 0);
+            /* background: rgb(179, 85, 255); */
+            animation-name: surfaceAnimation;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-direction: alternate-reverse;
+        }
+
+        /*波浪的CSS*/
+        .wave {
+            position: absolute;
+            /* 60% = -130% => 30% = -100% => 10% = -95%*/
+            top: -130%;
+            left: -40%;
+            height: 190%;
+            width: 180%;
+            border-radius: 50%;
+            background: white;
+            animation-name: waveAnimation;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            opacity: 0.4;
+        }
+
+        /*波浪的動畫*/
+        @keyframes waveAnimation {
+            0% {
+                transform: rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
+
+        /*水表面的動畫*/
+        @keyframes surfaceAnimation {
+            0% {
+                transform: rotateZ(-5deg);
+            }
+
+            100% {
+                transform: rotateZ(5deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="bottle">
+            <div class="bottle_inner">
+                <div class="surface"></div>
+                <div class="water"></div>
+                <div class="wave"></div>
+            </div>
+        </div>
+        <p style="margin-top:15px; font-size: 1.2em; font-weight: 600;">玉の水</p>
+        <p style="margin-top:2px; font-size: 0.5em; font-weight: 600;">Spherical Water</p>
+    </div>
+
+</body>
+
+</html>
